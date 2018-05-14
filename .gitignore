@@ -1,0 +1,10 @@
+_*
+.DS_Store
+.vscode
+.cache/
+.netrwhist
+
+/autoload/*
+!autoload/plug.vim
+/bundle/
+squashfs-root

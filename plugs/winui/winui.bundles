@@ -1,0 +1,26 @@
+"++ @file
+"
+"  Copyright ©2018 efikarl, https://efikarl.com.
+"
+"  This program is just made available under the terms and conditions of the
+"  MIT license: https://efikarl.com/mit-license.html.
+"
+"  THE PROGRAM IS DISTRIBUTED UNDER THE MIT LICENSE ON AN "AS IS" BASIS,
+"  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+"
+"--
+
+" ekvc#winui#statuslines
+Plug 'vim-airline/vim-airline'
+" ekvc#winui#start
+Plug 'mhinz/vim-startify'
+" ekvc#winui#tree
+if has('nvim')
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+" ekvc#winui#icon
+  Plug 'kristijanhusak/defx-icons'
+" ekvc#winui#git
+  Plug 'kristijanhusak/defx-git'
+endif
+" ekvc#winui#windows
+Plug 't9md/vim-choosewin'

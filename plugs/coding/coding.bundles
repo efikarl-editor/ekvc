@@ -1,0 +1,24 @@
+"++ @file
+"
+"  Copyright ©2018 efikarl, https://efikarl.com.
+"
+"  This program is just made available under the terms and conditions of the
+"  MIT license: https://efikarl.com/mit-license.html.
+"
+"  THE PROGRAM IS DISTRIBUTED UNDER THE MIT LICENSE ON AN "AS IS" BASIS,
+"  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+"
+"--
+
+" ekvc#coding#lspc
+Plug 'neovim/nvim-lsp'
+" ekvc#coding#completion
+Plug 'nvim-lua/completion-nvim'
+" ekvc#coding#diagnostic
+Plug 'nvim-lua/diagnostic-nvim'
+" ekvc#coding#comments
+Plug 'tomtom/tcomment_vim'
+" ekvc#coding#show_pair
+Plug 'luochen1990/rainbow'
+" ekvc#coding#show_diff
+Plug 'mhinz/vim-signify'
