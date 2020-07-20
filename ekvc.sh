@@ -32,7 +32,10 @@ ekvc_requisite()
   meet=1
   for i in $prerequisite
   do
-    hash $i &> /dev/null || (meet=0 && echo "command is not found, please install: $i!")
+    hash $i &> /dev/null || {
+      meet=0
+      echo "command is not found, please install: $i!"
+    }
   done
   [[ $meet == 0 ]] && {
     exit 1
@@ -68,7 +71,7 @@ ekvc_install()
   ln -sfnv $ekvcdir $initdir/nvim
 
   # install vim-plug for plugins management
-  nvim +PlugUpdate +qall < /dev/tty
+  nvim +PlugUpdate +qall
   echo "ekvc_install done"
 }
 
