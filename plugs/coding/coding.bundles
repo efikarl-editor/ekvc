@@ -11,7 +11,7 @@
 "--
 
 " ekvc#coding#lspc
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 " ekvc#coding#completion
 Plug 'nvim-lua/completion-nvim'
 " ekvc#coding#diagnostic
