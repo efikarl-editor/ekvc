@@ -75,7 +75,7 @@ if EkvcCoreBundleExist("defx.nvim")
       return
     endtry
     if isdirectory(l:full_path)
-      execute "bd" . expand('%:r') | execute g:ekvc_defx_command . l:full_path
+      execute "bd" ." ". expand('%:r') | execute g:ekvc_defx_command . l:full_path
     endif
   endfunction
 
@@ -115,7 +115,7 @@ if EkvcCoreBundleExist("defx.nvim")
     nnoremap <silent><buffer><expr> *
     \ defx#do_action('toggle_select_all')
     nnoremap <silent><buffer><expr> h
-    \ defx#do_action('open_tree', 'recursive', 'toggle')
+    \ defx#do_action('open_tree', 'toggle')
     nnoremap <silent><buffer><expr> j
     \ line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent><buffer><expr> k
