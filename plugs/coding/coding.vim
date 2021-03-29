@@ -18,8 +18,6 @@ lsp_lang_2 = 'pyls_ms'                  -- python
 lsp_lang_3 = 'rls'                      -- rust
 lsp_lang_4 = 'vimls'                    -- nvim
 EOF
-  nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.declaration()<cr>
-  nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<cr>
 
 " => 代码补全
 if EkvcCoreBundleExist("completion-nvim")

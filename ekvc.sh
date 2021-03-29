@@ -28,7 +28,7 @@ ekvc_requisite()
 {
   echo "ekvc_requisite ..."
 
-  prerequisite="nvim git curl global python${pythonr}  node yarn"
+  prerequisite="nvim git curl python${pythonr}"
   meet=1
   for i in $prerequisite
   do
