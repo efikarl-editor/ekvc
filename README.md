@@ -10,3 +10,7 @@ bash ekvc.sh -i
 ```bash
 bash ekvc.sh -r
 ```
+
+# snapshot
+
+![ekvc](./ekvc.gif)
