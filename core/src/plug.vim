@@ -18,7 +18,7 @@
 " Copyright (c) 2017, Junegunn Choi, MIT License.
 
 call plug#begin(EkvcCoreBundleDir(""))
-
+  let g:plug_url_format = "https://hub.fastgit.org/%s.git"
   for $bundle_group in g:ekvc_bundle_groups
     source $ekvc_home/plugs/$bundle_group/$bundle_group.bundles
   endfor
