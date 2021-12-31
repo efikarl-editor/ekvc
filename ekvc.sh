@@ -55,7 +55,7 @@ ekvc_install()
   echo "ekvc_install ..."
   # clone or update ekvc
   [[ ! -d $ekvcdir ]] && {
-    git clone https://github.com/efikarl/ekvc.git $ekvcdir
+    git clone https://github.com/efikarl-editor/ekvc.git $ekvcdir
   } || {
     [[ -d $ekvcdir/.git ]] && {
       git -C $ekvcdir fetch --all
