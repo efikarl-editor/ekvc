@@ -51,7 +51,7 @@ function! EkvcCoreBundleConf(dir)
 endfunction
 
 function! EkvcCoreConfEdit()
-  execute "tabedit" . " " . expand("~/.ekvc/init.vim", ":p")
+  execute "tabedit" . " " . expand("$ekvc_home/init.vim", ":p")
 endfunction
 
 if !exists("*EkvcCoreConfUpdate")
@@ -59,12 +59,12 @@ function! EkvcCoreConfUpdate()
   execute "PlugUpgrade"
   execute "PlugClean!"
   execute "PlugUpdate"
-  execute "source ~/.ekvc/init.vim"
+  execute "source $ekvc_home/init.vim"
 endfunction
 endif
 
 if !exists("*EkvcCoreConfSource")
 function! EkvcCoreConfSource()
-  execute "source ~/.ekvc/init.vim"
+  execute "source $ekvc_home/init.vim"
 endfunction
 endif

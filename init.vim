@@ -11,7 +11,11 @@
 "--
 
 if empty($ekvc_home)
+if !(has("win32") || has("win64"))
   let $ekvc_home = "~/.ekvc"
+else
+  let $ekvc_home = "~/AppData/Local/nvim"
+endif
 endif
 
 " core config

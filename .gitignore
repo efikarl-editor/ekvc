@@ -7,4 +7,5 @@ _*
 /autoload/*
 !autoload/plug.vim
 /bundle/
+/info
 squashfs-root
