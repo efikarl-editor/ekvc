@@ -14,8 +14,8 @@
 if EkvcCoreBundleExist("nvim-lspconfig")
 lua << EOF
 lsp_lang_1 = 'clangd'                   -- c/c++
-lsp_lang_2 = 'pyls_ms'                  -- python
-lsp_lang_3 = 'rls'                      -- rust
+lsp_lang_2 = 'rls'                      -- rust
+lsp_lang_3 = 'pylsp'                    -- python
 lsp_lang_4 = 'vimls'                    -- nvim
 EOF
 
@@ -55,12 +55,12 @@ local on_attach_vim = function()
   require'completion'.on_attach()
   require'diagnostic'.on_attach()
 end
-require'lspconfig'[lsp_lang_1].setup{on_attach=on_attach_vim}
-require'lspconfig'[lsp_lang_2].setup{on_attach=on_attach_vim}
-require'lspconfig'[lsp_lang_3].setup{on_attach=on_attach_vim}
-require'lspconfig'[lsp_lang_4].setup{on_attach=on_attach_vim}
+-- require'lspconfig'[lsp_lang_1].setup{on_attach=on_attach_vim}
+-- require'lspconfig'[lsp_lang_2].setup{on_attach=on_attach_vim}
+-- require'lspconfig'[lsp_lang_3].setup{on_attach=on_attach_vim}
+-- require'lspconfig'[lsp_lang_4].setup{on_attach=on_attach_vim}
 EOF
-endif "if EkvcCoreBundleExist("nvim-lsp")
+endif "if EkvcCoreBundleExist("nvim-lspconfig")
 
 " => 代码快速注释
 if EkvcCoreBundleExist("tcomment_vim")
