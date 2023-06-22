@@ -12,54 +12,63 @@
 
 " => 语言服务协议客户端
 if EkvcCoreBundleExist("nvim-lspconfig")
-lua << EOF
-lsp_lang_1 = 'clangd'                   -- c/c++
-lsp_lang_2 = 'rls'                      -- rust
-lsp_lang_3 = 'pylsp'                    -- python
-lsp_lang_4 = 'vimls'                    -- nvim
+lua <<EOF
+  lsp_lang_1 = 'clangd'                 -- c/c++
+  lsp_lang_2 = 'rust_analyzer'          -- rust
+  lsp_lang_3 = 'pylsp'                  -- python
 EOF
 
 " => 代码补全
-if EkvcCoreBundleExist("completion-nvim")
-  let g:completion_enable_auto_popup    = 1
-  let g:completion_auto_change_source   = 1
-  let g:completion_chain_complete_list  = {
-    \ 'vim': [
-    \    {'mode': '<c-n>'},
-    \    {'mode': '<c-p>'}
-    \],
-    \ 'lua': [
-    \    {'mode': '<c-n>'},
-    \    {'mode': '<c-p>'}
-    \],
-    \ 'default': [
-    \    {'complete_items': ['lsp', 'snippet']},
-    \    {'complete_items': ['path'], 'triggered_only': ['/']},
-    \    {'mode': '<c-n>'},
-    \    {'mode': '<c-p>'}
-    \]
-  \}
-  " 支持制表补全
-  inoremap <expr> <tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-  inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-endif
-
-" => 代码诊断
-if EkvcCoreBundleExist("diagnostic-nvim")
-  " todo
-endif
-
-
-lua << EOF
-local on_attach_vim = function()
-  require'completion'.on_attach()
-  require'diagnostic'.on_attach()
-end
--- require'lspconfig'[lsp_lang_1].setup{on_attach=on_attach_vim}
--- require'lspconfig'[lsp_lang_2].setup{on_attach=on_attach_vim}
--- require'lspconfig'[lsp_lang_3].setup{on_attach=on_attach_vim}
--- require'lspconfig'[lsp_lang_4].setup{on_attach=on_attach_vim}
+if EkvcCoreBundleExist("nvim-cmp")
+lua <<EOF
+  local completion = require'cmp'
+  completion.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      end,
+    },
+    window = {
+      -- completion = completion.config.window.bordered(),
+    },
+    mapping = completion.mapping.preset.insert({
+      ['<C-b>']     = completion.mapping.scroll_docs(-4),
+      ['<C-f>']     = completion.mapping.scroll_docs( 4),
+      ['<C-e>']     = completion.mapping.abort(),
+      ['<C-Space>'] = completion.mapping.complete(),
+      ['<CR>']      = completion.mapping.confirm({ select = true }),
+    }),
+    sources = completion.config.sources({
+      { name = 'vsnip'    }, -- For vsnip users.
+    }, {
+      { name = 'buffer'   },
+    })
+  })
+  -- Use buffer source for `/` and `?` (if you enable `native_menu`, this won't work anymore).
+  completion.setup.cmdline({ '/', '?' }, {
+    mapping = completion.mapping.preset.cmdline(),
+    sources = { { name = 'buffer' } }
+  })
+  -- Use cmdline & path source for ':' (if you enable `native_menu`, this won't work anymore).
+  completion.setup.cmdline(':', {
+    mapping = completion.mapping.preset.cmdline(),
+    sources = completion.config.sources({ { name = 'path' } }, { { name = 'cmdline' } })
+  })
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  require('lspconfig')[lsp_lang_1].setup { capabilities = capabilities }
+  require('lspconfig')[lsp_lang_2].setup { capabilities = capabilities }
+  require('lspconfig')[lsp_lang_3].setup { capabilities = capabilities }
 EOF
+else "if EkvcCoreBundleExist("nvim-cmp")
+lua <<EOF
+  require('lspconfig')[lsp_lang_1].setup { }
+  require('lspconfig')[lsp_lang_2].setup { }
+  require('lspconfig')[lsp_lang_3].setup { }
+EOF
+endif "if EkvcCoreBundleExist("nvim-cmp")
+
 endif "if EkvcCoreBundleExist("nvim-lspconfig")
 
 " => 代码快速注释

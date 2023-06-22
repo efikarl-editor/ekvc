@@ -21,7 +21,7 @@ syntax on                                   " 打开语法强调
 set completeopt=menuone,noinsert,noselect   " 代码补全策略
 
 set mouse=n                                 " 在vim中使能鼠标
-set clipboard=unnamed                       " 允许系统剪贴板
+set clipboard+=unnamed                      " 允许系统剪贴板
 set history=1024                            " 设置历史为1024
 set backspace=indent,eol,start              " 退格键跨边支持
 
@@ -60,9 +60,21 @@ set wildmode=list:longest,full              " 设置通配方式
 set scrolloff=500                           " 设置光标与上下边界的间距
 set scrolljump=10                           " 设置离开屏幕时的滚动行数
 
-if !(has("win32") || has("win64"))
-  set cscopeprg=gtags-cscope                " 设置cscope程序
-  set cscopetag                             " 为tag使用cscope
-else
+if EkvcCoreIsOsWin()
   set shada+=n$HOME/_viminfo
+endif
+
+if EkvcCoreIsOsWsl()
+  let g:clipboard = {
+        \   'name': 'WslClipboard',
+        \   'copy': {
+        \      '+': '/mnt/c/windows/system32/clip.exe',
+        \      '*': '/mnt/c/windows/system32/clip.exe',
+        \    },
+        \   'paste': {
+        \      '+': '/mnt/c/windows/system32/windowspowershell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \      '*': '/mnt/c/windows/system32/windowspowershell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \   },
+        \   'cache_enabled': 0,
+        \ }
 endif

@@ -13,9 +13,13 @@
 " ekvc#coding#lspc
 Plug 'neovim/nvim-lspconfig'
 " ekvc#coding#completion
-Plug 'nvim-lua/completion-nvim'
-" ekvc#coding#diagnostic
-Plug 'nvim-lua/diagnostic-nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 " ekvc#coding#comments
 Plug 'tomtom/tcomment_vim'
 " ekvc#coding#show_pair

@@ -49,6 +49,7 @@ if EkvcCoreBundleExist("defx.nvim")
   call defx#custom#option('_', {
     \ 'winwidth' : 40, 'split' : 'vertical', 'direction' : 'topleft', 'show_ignored_files' : 0, 'toggle' : 1, 'resume' : 1
     \ })
+  let g:defx_icons_column_length  = 2
 
   call defx#custom#column('icon', {
     \ 'root_icon'                 : '',

@@ -22,6 +22,10 @@ silent function! EkvcCoreIsOsWin()
   return  (has("win32") || has("win64"))
 endfunction
 
+silent function! EkvcCoreIsOsWsl()
+  return has("unix") && has("wsl")
+endfunction
+
 silent function! EkvcCoreIsNvim()
   return has("nvim")
 endfunction

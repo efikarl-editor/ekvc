@@ -12,17 +12,12 @@
 
 
 " => 各种查找
-if EkvcCoreBundleExist("leaderf")
-  let g:Lf_RootMarkers = ['.root', '.git', '.svn']
-  " 弹窗模式
-  let g:Lf_WindowPosition = 'popup'
-  let g:Lf_PreviewInPopup = 1
-  let g:Lf_StlSeparator   = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': g:ekvc_font_family }
-  let g:Lf_PreviewResult  = {'Function': 0, 'BufTag': 0 }
-
-  " 按键映射 {
-  let g:Lf_ShortcutF = '<C-P>'
-  noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-  noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru    %s", "")<CR><CR>
-  " }
+if EkvcCoreBundleExist("telescope.nvim")
+lua << EOF
+  local builtin = require('telescope.builtin')
+  vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+  vim.keymap.set('n', '<leader>fb', builtin.buffers   , {})
+  vim.keymap.set('n', '<leader>fg', builtin.live_grep , {})
+  vim.keymap.set('n', '<leader>fh', builtin.help_tags , {})
+EOF
 endif
